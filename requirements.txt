@@ -1,4 +1,10 @@
 seaborn
 statsmodels
 xgboost
-scikit-learn
+optuna
+boruta
+plotly
+shap
+scipy
+pandas
+smogn
