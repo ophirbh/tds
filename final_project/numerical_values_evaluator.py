@@ -2,7 +2,9 @@ import openai
 import json
 import pandas as pd
 
-def validate_numerical_features(df: pd.DataFrame, regression_problem_statement: str, additional_column_info: dict = None, model: str ="gpt-4o"):
+
+def check_numerical_characteristic_consistency(df: pd.DataFrame, regression_problem_statement: str,
+                                                 additional_column_info: dict = None, model: str = "gpt-4o"):
     openai.api_key =
 
     # Filter the dataframe to only include numerical columns.
@@ -10,27 +12,31 @@ def validate_numerical_features(df: pd.DataFrame, regression_problem_statement: 
 
     results = {}
 
-    # Define the function schema (same for every feature)
+    # Define the function schema for evaluating numerical features with reasoning.
     function_schema = {
-        "name": "find_missing_values_of_categorical_features",
+        "name": "check_numerical_characteristics",
         "description": (
-            "Return a list of important missing values of a categorical feature that are absent from the provided list of values. "
-            "The categorical feature is described by its name, its list of values and a regression problem statement is provided."
+            "Return a boolean value indicating if the numerical feature's current values make sense given the regression problem, "
+            "and provide a detailed explanation supporting your answer. For example, for a diamond price, you might expect the minimum "
+            "to be positive. The explanation should justify why the values make sense or not."
         ),
         "parameters": {
             "type": "object",
             "properties": {
-                "missing_values_of_categorical_features": {
-                    "type": "array",
-                    "items": {"type": "string"},
-                    "description": "A list of important missing values of a categorical feature relevant to the regression problem."
+                "values_make_sense": {
+                    "type": "boolean",
+                    "description": "A yes (true) or no (false) answer indicating if the numerical values make sense given the regression problem."
+                },
+                "reasoning": {
+                    "type": "string",
+                    "description": "A detailed explanation supporting the boolean answer."
                 }
             },
-            "required": ["missing_values_of_categorical_features"]
+            "required": ["values_make_sense", "reasoning"]
         }
     }
 
-    # Iterate feature by feature.
+    # Iterate over each numerical feature.
     for col in numerical_features:
         # Build the feature description with additional info if available.
         if additional_column_info is None or col not in additional_column_info:
@@ -38,22 +44,35 @@ def validate_numerical_features(df: pd.DataFrame, regression_problem_statement: 
         else:
             feature_description = f"{col} ({additional_column_info[col]})"
 
-        stats = df[col].describe()
-        skewness = df[col].skew()
-        kurtosis = df[col].kurt()
+        # Calculate descriptive statistics with additional measures.
+        series = df[col]
+        stats = {
+            "min": series.min(),
+            "max": series.max(),
+            "mean": series.mean(),
+            "median": series.median(),
+            "std": series.std(),
+            "variance": series.var(),
+            "skewness": series.skew(),
+            "kurtosis": series.kurt(),
+            "25%": series.quantile(0.25),
+            "75%": series.quantile(0.75),
+            "IQR": series.quantile(0.75) - series.quantile(0.25)
+        }
 
-        # Construct a user message for this feature.
+        # Construct the user message for this numerical feature.
         user_message = (
             f"I have this regression problem: '{regression_problem_statement}'. "
-            f"I have a dataset with (among others) the categorical feature: {feature_description}. "
-            f"This categorical feature has this list of unique values: {categorical_feature_values}"
-            "Please identify any important missing categorical features for this problem that are absent from the dataset. "
-            "Please do not mention features that can be obtained by transforming the existing feature."
+            f"I have a dataset with (among others) the numerical feature: {feature_description}. "
+            f"This numerical feature has the following descriptive statistics: {json.dumps(stats)}. "
+            "Please evaluate if the current values make sense given the context of the regression problem. "
+            "Answer with true or false and include a detailed explanation for your answer."
         )
 
         messages = [
             {"role": "system", "content": (
-                "You are a data science expert who identifies important missing values of categorical features based on the provided regression problem."
+                "You are a data science expert who evaluates whether a numerical feature's values make sense given a regression problem. "
+                "Respond with a boolean answer (true or false) and include a detailed explanation supporting your answer."
             )},
             {"role": "user", "content": user_message}
         ]
@@ -63,33 +82,46 @@ def validate_numerical_features(df: pd.DataFrame, regression_problem_statement: 
             model=model,
             messages=messages,
             functions=[function_schema],
-            function_call={"name": "find_missing_values_of_categorical_features"}
+            function_call={"name": "check_numerical_characteristics"}
         )
 
         message = response["choices"][0]["message"]
 
-        # Try to parse the structured response.
+        # Parse the structured response.
         if "function_call" in message:
             try:
                 arguments = json.loads(message["function_call"]["arguments"])
-                missing_values = arguments.get("missing_values_of_categorical_features", [])
+                values_make_sense = arguments.get("values_make_sense", None)
+                reasoning = arguments.get("reasoning", "")
             except Exception as e:
                 print(f"Error parsing function response for feature {col}: {e}")
-                missing_values = []
+                values_make_sense = None
+                reasoning = ""
         else:
-            # Fallback to parse a normal JSON response.
+            # Fallback to parsing a normal JSON response.
             try:
-                missing_values = json.loads(message["content"]).get("missing_values_of_categorical_features", [])
+                parsed = json.loads(message["content"])
+                values_make_sense = parsed.get("values_make_sense", None)
+                reasoning = parsed.get("reasoning", "")
             except Exception as e:
                 print(f"Error parsing content response for feature {col}: {e}")
-                missing_values = []
+                values_make_sense = None
+                reasoning = ""
 
-        results[col] = missing_values
-        print(f"Missing categorical features for '{col}':", missing_values)
+        results[col] = {
+            "values_make_sense": values_make_sense,
+            "reasoning": reasoning
+        }
+        print(f"Feature '{col}': Values make sense: {values_make_sense}\nReasoning: {reasoning}\n")
 
     return results
 
+
 if __name__ == '__main__':
     df = pd.read_csv("../data/processed_data/diamond_features.csv")
-    res = validate_numerical_features(df, "I wish to predict diamond prices according to the other features.")
+    res = check_numerical_characteristic_consistency(
+        df,
+        "I wish to predict diamond prices according to the other features.",
+        additional_column_info={"price": "The sale price of the diamond", "carat": "Weight of the diamond"}
+    )
     print(res)
