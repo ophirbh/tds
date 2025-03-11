@@ -2,8 +2,8 @@ import openai, json
 import pandas as pd
 
 def find_missing_categorical_features_by_feature(df: pd.DataFrame, regression_problem_statement: str,
-                                                 categorical_values_upper_bound: int = 40,
-                                                 additional_column_info: dict = None, model: str = "gpt-4o"):
+                                                   categorical_values_upper_bound: int = 40,
+                                                   additional_column_info: dict = None, model: str = "gpt-4o"):
 
     openai.api_key =
 
@@ -13,7 +13,7 @@ def find_missing_categorical_features_by_feature(df: pd.DataFrame, regression_pr
 
     results = {}
 
-    # Define the function schema (same for every feature)
+    # Define the function schema (only used for models that support function calling).
     function_schema = {
         "name": "find_missing_values_of_categorical_features",
         "description": (
@@ -47,9 +47,9 @@ def find_missing_categorical_features_by_feature(df: pd.DataFrame, regression_pr
         user_message = (
             f"I have this regression problem: '{regression_problem_statement}'. "
             f"I have a dataset with (among others) the categorical feature: {feature_description}. "
-            f"This categorical feature has this list of unique values: {categorical_feature_values}"
-            "Please identify any important missing categorical features for this problem that are absent from the dataset. "
-            "Please do not mention features that can be obtained by transforming the existing feature."
+            f"This categorical feature has these unique values: {list(categorical_feature_values)}. "
+            "Please identify any important missing categorical values for this problem that are absent from the dataset. "
+            "Do not include values that could be derived by transforming the existing ones."
         )
 
         messages = [
@@ -59,18 +59,26 @@ def find_missing_categorical_features_by_feature(df: pd.DataFrame, regression_pr
             {"role": "user", "content": user_message}
         ]
 
-        # Call the ChatCompletion API with function calling enabled.
-        response = openai.ChatCompletion.create(
-            model=model,
-            messages=messages,
-            functions=[function_schema],
-            function_call={"name": "find_missing_values_of_categorical_features"}
-        )
+        # Call the ChatCompletion API differently based on model capability.
+        if model == "gpt-4o":
+            response = openai.ChatCompletion.create(
+                model=model,
+                messages=messages,
+                functions=[function_schema],
+                function_call={"name": "find_missing_values_of_categorical_features"}
+            )
+        else:
+            # For models that do not support function calling.
+            response = openai.ChatCompletion.create(
+                model=model,
+                messages=messages
+            )
 
         message = response["choices"][0]["message"]
 
-        # Try to parse the structured response.
-        if "function_call" in message:
+        # Parse the structured response.
+        missing_values = []
+        if model == "gpt-4o" and "function_call" in message:
             try:
                 arguments = json.loads(message["function_call"]["arguments"])
                 missing_values = arguments.get("missing_values_of_categorical_features", [])
@@ -78,9 +86,10 @@ def find_missing_categorical_features_by_feature(df: pd.DataFrame, regression_pr
                 print(f"Error parsing function response for feature {col}: {e}")
                 missing_values = []
         else:
-            # Fallback to parse a normal JSON response.
+            # Fallback for models without function calling: expect a plain JSON string in message["content"]
             try:
-                missing_values = json.loads(message["content"]).get("missing_values_of_categorical_features", [])
+                parsed_content = json.loads(message["content"])
+                missing_values = parsed_content.get("missing_values_of_categorical_features", [])
             except Exception as e:
                 print(f"Error parsing content response for feature {col}: {e}")
                 missing_values = []
@@ -91,16 +100,11 @@ def find_missing_categorical_features_by_feature(df: pd.DataFrame, regression_pr
     return results
 
 if __name__ == '__main__':
+    # Example usage (make sure the CSV path is correct)
     df = pd.read_csv("../data/processed_data/diamond_features.csv")
-    res = find_missing_categorical_features_by_feature(df, "I wish to predict diamond prices according to the other features.")
+    res = find_missing_categorical_features_by_feature(
+        df,
+        "I wish to predict diamond prices according to the other features.",
+        model="o1"  # Change this to "gpt-4o" if desired
+    )
     print(res)
-# Example usage:
-# df = pd.DataFrame({
-#     'color': ['red', 'blue', 'green'],
-#     'type': ['A', 'B', 'A'],
-#     'value': [1, 2, 3]  # non-categorical, will be ignored
-# })
-# regression_problem = "Predict the sales price of a product."
-# additional_info = {'color': 'The primary color of the product', 'type': 'Product category'}
-# missing_results = find_missing_categorical_features_by_feature(df, regression_problem, additional_info)
-# print(missing_results)
