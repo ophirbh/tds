@@ -1,0 +1,87 @@
+Numerical validation values perturbed:
+
+
+gpt-4o output:
+
+Perturbation:  Exaggerate engine size
+
+Feature 'Engine Size(L)': Values make sense: False
+Reasoning: The numerical feature 'Engine Size(L)' has a maximum value of 335.0, which is exceptionally high and doesn't seem realistic given typical vehicle engine sizes. Most vehicle engines, whether cars or trucks, are far smaller than this. For example, typical car engines range from around 1.0 to 6.0 liters, with larger commercial trucks often ranging up to 15 liters, but rarely exceeding this unless heavily modified for specific industrial use or racing applications. The presence of such a large maximum value, coupled with the high mean of 19.88 liters and standard deviation of 45.54 liters, suggests possible outliers or data entry errors. Additionally, the skewness of 3.64 and kurtosis of 14.77 indicate a distribution heavily skewed to the right with long tails, further implying the presence of extreme outliers. Thus, these statistics suggest that there may be issues with the data that could affect the regression analysis, particularly if those extreme values are not representative of typical vehicles.
+
+Perturbation:  Impossible cylinder counts
+
+Feature 'Cylinders': Values make sense: False
+Reasoning: The 'Cylinders' feature in the context of predicting CO2 emissions from vehicles represents the number of cylinders an engine has. In practical terms, the number of cylinders in a vehicle's engine is an integer value that is always positive (e.g., 2, 3, 4, 5, 6, 8, 10, 12, or even 16 in some high-performance engines). The statistics provided contain a minimum value of -2.0, which is not possible because an engine cannot have a negative number of cylinders. Furthermore, the maximum value of 50.0 is highly unusual; most consumer vehicles do not have more than 12 or 16 cylinders. The presence of negative or improbably large values suggests data entry errors or incorrect data collection. These inaccuracies could severely impact the validity and conclusions of the regression analysis.
+
+Perturbation:  Negative or excessive consumption
+
+Feature 'Fuel Consumption City (L/100 km)': Values make sense: False
+Reasoning: In the context of predicting CO2 emissions based on fuel consumption, the numerical feature 'Fuel Consumption City (L/100 km)' should represent the average amount of fuel a vehicle consumes per 100 kilometers in a city setting, expressed in liters. In a practical sense, this value should always be non-negative, as it represents a consumption quantity. The presence of a minimum value of -10.0 is not realistic. Negative fuel consumption does not make sense, as it implies the vehicle is somehow generating fuel, which is physically impossible. The other statistics such as mean, median, and maximum value seem realistic for various vehicle types, but the presence of negative values suggests data errors or entry mistakes. Therefore, the current numerical feature values do not fully make sense given the regression problem.
+
+Perturbation:  Negative or excessive consumption
+
+Feature 'Fuel Consumption Hwy (L/100 km)': Values make sense: False
+Reasoning: Fuel Consumption Hwy (L/100 km) is meant to represent the fuel efficiency of a vehicle on highways, where lower values indicate better fuel efficiency. Normally, this metric should be a positive value as it represents the amount of fuel consumed per 100 kilometers driven. A negative value for minimum fuel consumption is not physically plausible, as it suggests that fuel is being generated or that fuel consumption is impossibly low. This indicates an error in data collection, entry, or processing. 
+
+Additionally, the high skewness and high max value also suggest potential outliers or issues with data entry for other extreme values. Typically, fuel consumption within urban or highway contexts ranges from 4 to 20 L/100 km depending on the type of vehicle and its engine efficiency. Therefore, the minimum value of -10.0 is nonsensical, and possibly some of the extreme values could be erroneous as well, indicating that the dataset might require cleaning or verification of its numerical entries in this feature.
+
+Perturbation:  Negative or excessive consumption
+
+Feature 'Fuel Consumption Comb (L/100 km)': Values make sense: False
+Reasoning: Fuel consumption, measured in liters per 100 kilometers (L/100 km), represents the amount of fuel a vehicle consumes to travel 100 km. For this regression problem aiming to predict CO2 emissions based on fuel consumption, the negative minimum value of -10.0 L/100 km is nonsensical because fuel consumption cannot be negative. A negative value suggests capturing or erroneously recording rather than consuming fuel. 
+
+Typically, realistic fuel consumption values are positive, with a sensible range depending on the vehicle type and efficiency—from a few liters per 100 kilometers for very efficient vehicles up to say around 30-50 L/100 km for less efficient or larger vehicles, such as trucks or high-performance cars. 
+
+The negative minimum value indicates there is likely an error in the dataset that should be addressed to ensure accurate predictions and analysis in the regression model.
+
+Perturbation:  Negative or excessive mpg
+
+Feature 'Fuel Consumption Comb (mpg)': Values make sense: False
+Reasoning: Fuel consumption (mpg) should represent the miles per gallon a vehicle can achieve, which is a measure of fuel efficiency. Typically, MPG values for vehicles should be positive because a vehicle cannot consume negative fuel. The inclusion of a minimum value of -5.0 MPG in the data is nonsensical and suggests data entry errors or a conceptual mistake. Such negative MPG values likely need correcting or removal from the dataset to ensure the accuracy of any regression analysis. Additionally, the wide range of values and high standard deviation coupled with a skewness value of 2.35, which indicates a positively skewed distribution, suggest variability consistent with a range of vehicle efficiencies. However, the presence of negative values overrides these considerations regarding reasonableness in this context.
+
+Perturbation:  Negative or extreme emissions
+
+Feature 'CO2 Emissions(g/km)': Values make sense: False
+Reasoning: The numerical feature 'CO2 Emissions(g/km)' should represent positive values because emissions cannot be negative. A negative minimum value (-50.0 g/km) in the dataset is unrealistic and suggests data entry errors or incorrect data handling. Typically, CO2 emissions are measured in positive grams per kilometer, as emissions involve the release of gases. 
+
+Moreover, the maximum value of 5000 g/km is unusually high for typical vehicles, which generally emit less than 1000 g/km. Such an extreme maximum, combined with a high skewness (2.67) and kurtosis (5.23), suggests the presence of outliers or anomalies in the data.
+
+To ensure the integrity of the regression model predicting CO2 emissions, these issues should be addressed. The dataset likely contains errors or unusual values that do not reflect realistic CO2 emission levels for the vehicles being studied.
+
+o1-output:
+
+Perturbation:  Exaggerate engine size
+
+Feature 'Engine Size(L)': Values make sense: False
+Reasoning: The minimum (0.9 L) is reasonable for a small passenger car engine, and the mean, median, and IQR mostly fit expected personal vehicle ranges (roughly 1–6 liters). However, a maximum of 335 L is tremendously high—far beyond even large commercial or heavy-duty engines—and is extremely unlikely to represent a conventional vehicle. This extreme outlier indicates a likely data entry error or another form of anomaly that does not make practical sense for typical vehicle CO2 emissions prediction.
+
+Perturbation:  Impossible cylinder counts
+
+Feature 'Cylinders': Values make sense: False
+Reasoning: It is highly unlikely for a vehicle to have a negative number of cylinders, and while 50 cylinders could theoretically occur in extremely specialized engines, it falls well outside the typical passenger or commercial vehicle range. Therefore, the presence of both a negative minimum and such an extreme maximum for cylinders suggests that the data for this feature do not make sense for a vehicle CO2 emissions prediction problem.
+
+Perturbation:  Negative or excessive consumption
+
+Feature 'Fuel Consumption City (L/100 km)': Values make sense: False
+Reasoning: The reported minimum value of -10.0 L/100 km is not physically possible, because a vehicle cannot have negative fuel consumption. While a maximum of 100 L/100 km may represent an extremely inefficient vehicle or special use case, the presence of negative consumption indicates that there are likely data errors or outliers. Thus, the values as provided do not make sense given the context of predicting vehicle CO2 emissions.
+
+Perturbation:  Negative or excessive consumption
+
+Feature 'Fuel Consumption Hwy (L/100 km)': Values make sense: False
+Reasoning: Fuel consumption values (L/100 km) cannot logically be negative, so the negative minimum value (–10.0) is physically implausible. Additionally, a maximum of 100 L/100 km is extraordinarily high for normal highway driving, indicating there may be data errors or outliers. Therefore, these statistics suggest that the values as currently presented do not make sense for a typical automotive fuel consumption context.
+
+Perturbation:  Negative or excessive consumption
+
+Feature 'Fuel Consumption Comb (L/100 km)': Values make sense: False
+Reasoning: Fuel consumption in L/100 km cannot be negative. The presence of a minimum value of -10.0 indicates incorrect data points or potential data-entry errors. Consequently, these values do not make sense in the context of predicting CO2 emissions based on realistic fuel consumption.
+
+Perturbation:  Negative or excessive mpg
+
+Feature 'Fuel Consumption Comb (mpg)': Values make sense: False
+Reasoning: A minimum of -5 mpg is nonsensical for real-world vehicles, since miles per gallon cannot be negative. While some values—such as a maximum of 200 mpg—might be theoretically possible for highly efficient vehicles, having negative fuel economy figures indicates either data-entry or measurement errors, so the values do not make sense as-is for predicting CO2 emissions.
+
+Perturbation:  Negative or extreme emissions
+
+Feature 'CO2 Emissions(g/km)': Values make sense: False
+Reasoning: These CO2 emission values do not fully make sense because CO2 emissions in g/km cannot realistically be negative. Although the high maximum and large standard deviation could reflect extreme outliers (e.g., heavy vehicles or data errors), the negative minimum strongly suggests an erroneous or corrupt data point. Therefore, the presence of −50 g/km is not physically meaningful in the context of standard vehicle emissions.
+

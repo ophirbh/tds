@@ -1,0 +1,67 @@
+Missing features:
+
+Ground truth:
+Medication,
+Alcohol Consumption,
+Light Exposure,
+Room Temperature,
+Stimulant consumption,
+Blue Light Exposure,
+Medical Conditions,
+Environmental Noise,
+Schedule consistency
+
+domain expert:
+Medication,
+Alcohol Consumption,
+Light Exposure,
+Blue Light Exposure,
+Schedule consistency,
+Environmental Noise.
+
+metrics:
+TP = 6
+FP = 0
+FN = 3
+Precision = 1.0
+Recall = 0.67
+F2 = 0.72
+
+gpt-4o output:
+Medication Use,
+Social Engagement Levels,
+Dietary Habits,
+Environmental Noise Levels,
+Medical Conditions (e.g., insomnia, sleep apnea)"
+Caffeine Consumption,
+Work Schedule (e.g., Night Shift),
+Blue Light Exposure (e.g., screen time before bed),
+Room Temperature,
+Mental Health Status"
+Alcohol Consumption,
+Light Exposure.
+
+metrics:
+TP = 7
+FP = 4
+FN = 2
+Precision = 0.639
+Recall = 0.778
+F2 = 0.745
+
+o1 output:
+Caffeine or other stimulant consumption,
+Bedtime, wake-up time, and sleep schedule consistency,
+Alcohol consumption,
+Medication usage (especially sleep aids or antidepressants),
+Chronic medical or mental health conditions,
+Smoking or tobacco use,
+Sleep environment factors (e.g., noise level, room temperature, lighting).
+
+metrics:
+TP = 7
+FP = 1
+FN = 1
+Precision = 0.875
+Recall = 0.875
+F2 = 0.875

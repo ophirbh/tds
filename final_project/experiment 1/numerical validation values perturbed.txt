@@ -1,0 +1,90 @@
+numerical validation values perturbed:
+
+gpt-4o output:
+
+Perturbation: Exaggerate age
+
+Feature 'Age': Values make sense: False
+Reasoning: The numerical feature 'Age' in the dataset intended for predicting sleep quality contains a maximum value of 2950 years, which is unrealistic for human ages. Normally, human ages range from 0 to around 120 years, with exceptionally rare cases slightly exceeding this. The minimum age of 27.0 and the median age of 44.0 seem reasonable and fall within expected ranges. However, the extremely high maximum age, along with the mean age of 287.54 and a high standard deviation of 613.29, indicate the presence of outliers or incorrect data entries. Additionally, the skewness of 2.95 and kurtosis of 8.06 suggest a highly skewed distribution with heavy tails, further pointing to abnormal values. Given this context, the values currently do not make sense for the regression problem as they likely include erroneous data that could adversely impact the model's predictions.
+
+Perturbation: Impossible sleep durations
+
+Feature 'Sleep Duration': Values make sense: False
+Reasoning: The numerical feature 'Sleep Duration' should represent the duration of sleep in hours, a metric typically ranging from about 0 to 24 hours since it would be biologically impossible to sleep more than 24 hours continuously or to sleep a negative amount of hours. However, the descriptive statistics show a minimum value of -5.0 and a maximum of 25.0, which are not realistic in this context. The negative value indicates an error in data collection or entry, as it's not possible to have negative sleep duration. Similarly, while sleeping 25 hours is theoretically possible but highly unusual, it is statistically implausible, suggesting potential data quality issues. Thus, given the presence of these anomalies, the values do not make sense in the context of predicting sleep quality.
+
+Perturbation: Out of scale range
+
+Feature 'Quality of Sleep': Values make sense: False
+Reasoning: In the given regression problem, the numerical feature 'Quality of Sleep' is meant to represent a measure related to sleep quality. Such a measure is typically on a scale that does not include negative values, as negative values do not have a practical or meaningful interpretation in this context. For instance, sleep quality might be expressed on a scale of 0 to 10, where 0 represents very poor sleep quality and 10 represents excellent sleep quality. Therefore, having a minimum value of -1.0 in this dataset is not reasonable because it suggests a potential error in data entry or preprocessing. Moreover, the maximum value is 20.0, which also appears to exceed typical scales for sleep quality measures and could likewise indicate data inaccuracies. These extreme values (both negative and overly large) suggest that there may be errors or a lack of standardization in how sleep quality ratings have been recorded or scaled. Consequently, these outliers or erroneous entries can seriously affect the analysis and predictions of this regression model, and hence the values do not make sense in this context.
+
+Perturbation: Negative or too high minutes
+
+Feature 'Physical Activity Level': Values make sense: False
+Reasoning: The numerical feature in question, 'Physical Activity Level', has a minimum value of -30.0, which does not make logical sense for this context. Physical activity is generally measured in positive units like METs (Metabolic Equivalent of Task), steps, calories, or any similar metric that quantifies the amount of physical activity. These metrics cannot logically be negative because they represent some measure of activity output or energy expenditure, which cannot be less than zero.
+
+Furthermore, the range of the feature extends to 1500.0 with a median of 60.0 and an IQR (Interquartile Range) of 45.0. The very large maximum value and the relatively high skewness of 2.40 suggest a right-skewed distribution, indicating the presence of outliers or extreme values. While extreme values can be valid in some contexts, they should still be logically reasonable (i.e., non-negative in this case).
+
+The negative minimum value indicates there may be errors in data collection or entry, and this issue needs to be addressed for the feature values to make logical and functional sense for the regression problem of predicting sleep quality based on physical activity.
+
+Perturbation: Out of scale range
+
+Feature 'Stress Level': Values make sense: False
+Reasoning: The stress level feature in this dataset exhibits a minimum value of -2.0, which is problematic because stress levels are typically measured on a scale where zero represents no stress, and negative values are not meaningful in any standard interpretation of stress measurement. Hence, the presence of negative values in this dataset is an indication of either a data entry error or a conceptual misunderstanding of how stress levels are measured or represented. In the context of predicting sleep quality, it is crucial that all features have physically meaningful and correctly scaled values to ensure the validity of the regression model.
+
+Perturbation: Extreme heart rates
+
+Feature 'Heart Rate': Values make sense: False
+Reasoning: The descriptive statistics for the Heart Rate feature contain some values that do not make sense in the context of predicting sleep quality and typical human heart rates. The minimum heart rate is recorded as 0.0, which is not possible for a living person as a heart rate of 0 would indicate death. Additionally, the maximum heart rate is an extremely high value of 500.0, which is not realistic for humans. Normally, human heart rates range from around 40 BPM during rest for highly trained athletes to around 100 BPM during moderate activity. Even during intense exercise, heart rates usually max out around 180-200 BPM based on age and fitness levels. 
+
+The mean of 96.75 and median of 70.0 BPM appear reasonable, aligning with typical resting heart rates. However, the extremely high standard deviation and variance suggest significant outliers potentially due to erroneous data entry or measurement errors. Furthermore, the skewness and kurtosis are high, indicating a distribution with a heavy tail, likely due to these unrealistic outliers.
+
+Therefore, the presence of the minimum and maximum values at 0 and 500 BPM respectively are strong indications of data errors, making the current values not entirely reliable for predicting sleep quality.
+
+Perturbation: Negative or excessive steps
+
+Feature 'Daily Steps': Values make sense: False
+Reasoning: The numerical values for the 'Daily Steps' feature do not make sense given the context. Normally, the number of daily steps for humans should be a non-negative integer, as it counts the physical steps a person takes in a day. The presence of a negative minimum value (-1000.0) is nonsensical in this context, as you cannot have negative steps.
+
+Additionally, although it's uncommon, high step counts (such as the observed maximum of 200,000 steps) might be possible in extreme cases or errors in data collection, but combined with such a high variance and a high standard deviation indicates that there might be data quality issues or outliers skewing the analysis.
+
+The high skewness (2.737) and kurtosis (5.548) further suggest that the data is heavily right-skewed with potential outliers, which could distort the predictive model's connection between daily steps and sleep quality. These statistical anomalies, combined with the physically impossible negative step count, suggest that the data values don't reflect realistic human activity accurately.
+
+
+
+o1 output:
+
+Perturbation: Exaggerate age
+
+Feature 'Age': Values make sense: False
+Reasoning: The maximum reported age of 2950 is implausible for human age, and the unusually high value (with a mean of about 288) strongly suggests a data quality issue. Although the minimum and median values are within a reasonable human age range, the extreme outlier skews the distribution and indicates the data for this feature does not make sense for predicting human sleep quality.
+
+Perturbation: Impossible sleep durations
+
+Feature 'Sleep Duration': Values make sense: False
+Reasoning: Negative sleep duration values (-5 hours) are not feasible within the context—one cannot have a negative duration of sleep. While 25 hours is an extreme but still potentially a valid outlier if it represents some extraordinary case, negative values suggest data entry or measurement errors. Therefore the numerical range of -5 to 25 hours does not logically fit typical daily sleep duration.
+
+Perturbation: Out of scale range
+
+Feature 'Quality of Sleep': Values make sense: False
+Reasoning: A minimum value of –1 is unusual for a sleep quality measure, which is commonly defined on a non-negative scale (e.g., 1–10). Although the maximum of 20 might be a plausible outlier if a broader measure is used, the presence of negative values suggests potential data entry errors or mismatched scaling. Hence, the current range of values does not make sense for typical sleep quality ratings.
+
+Perturbation: Negative or too high minutes
+
+Feature 'Physical Activity Level': Values make sense: False
+Reasoning: Physical activity level would generally be nonnegative (and often within a more modest range), so having a minimum of −30 and a maximum of 1500 raises concerns. The negative minimum is particularly problematic because it suggests erroneous data or an incorrect measurement scale. While the median and IQR may look plausible for typical activity data, the presence of a negative value implies that some observations may be invalid and should be investigated or corrected.
+
+Perturbation: Out of scale range
+
+Feature 'Stress Level': Values make sense: False
+Reasoning: Stress level is typically measured on a non-negative scale (for instance, from 0 to 10). Having negative values (min = -2.0) is unusual and likely indicates data quality issues or an atypical measurement method. Consequently, the negative minimum suggests that these stress level values may not make sense in the context of predicting sleep quality unless there is a specific survey or measurement scale justifying negative readings.
+
+Perturbation: Extreme heart rates
+
+Feature 'Heart Rate': Values make sense: False
+Reasoning: A heart rate value of 0 is physiologically impossible, and 500 is unrealistically high for normal human physiology. While a median of 70 and an IQR between 65–72 are plausible, the extremely out-of-range minimum and maximum suggest data recording errors or outliers that do not make sense in the context of a typical human heart rate. Therefore, these values overall raise concerns about data validity for predicting sleep quality.
+
+Perturbation: Negative or excessive steps
+
+Feature 'Daily Steps': Values make sense: False
+Reasoning: The presence of a negative minimum suggests an error because daily steps cannot logically be below zero. Additionally, 200,000 steps as a maximum is extremely high (equivalent to walking well over 90 miles in one day), which is quite unrealistic. These two extreme values raise concerns about the data’s validity in the context of predicting sleep quality based on daily steps.
+

@@ -1,0 +1,162 @@
+Missing categorical values:
+
+Traffic_Level: 
+GT:
+None
+
+domain expert:
+None
+
+TP = 1
+FP = 0
+FN = 0
+Precision = 1.0
+Recall = 1.0
+F2 = 1.0
+
+gpt-4o output:
+No Traffic,
+Heavy Traffic
+
+TP = 0
+FP = 2
+FN = 0
+Precision = 0 (undefined)
+Recall = 0
+F2 = 0
+
+
+o1 output:
+None
+
+
+TP = 1
+FP = 0
+FN = 0
+Precision = 1.0
+Recall = 1.0
+F2 = 1.0
+
+weather_description:
+GT: 
+heavy rain,
+snow,
+thunderstorm
+
+domain expert:
+heavy rain,
+snow.
+
+TP = 2
+FP = 0
+FN = 1
+Precision = 1.0
+Recall = 0.67
+F2 = 0.72
+
+gpt-4o output:
+heavy rain,
+snow,
+drizzle,
+blizzard,
+sleet,
+thunderstorm
+
+TP = 3
+FP = 3
+FN = 0
+Precision = 0.5
+Recall = 1.0
+F2 = 0.8333
+
+
+o1 output:
+thunderstorm,
+snow,
+heavy rain
+
+
+TP = 3
+FP = 0
+FN = 0
+Precision = 1.0
+Recall = 1.0
+F2 = 1.0
+
+Type_of_order:
+GT:
+None
+
+domain expert:
+None
+
+TP = 1
+FP = 0
+FN = 0
+Precision = 1.0
+Recall = 1.0
+F2 = 1.0
+
+
+gpt-4o output:
+Special Order,
+Dessert,
+Gourmet Meal,
+Fast Food
+
+TP = 0
+FP = 4
+FN = 0
+Precision = 0 (undefined)
+Recall = 0
+F2 = 0
+
+o1 output:
+None
+
+TP = 1
+FP = 0
+FN = 0
+Precision = 1.0
+Recall = 1.0
+F2 = 1.0
+
+
+Type_of_vehicle:
+GT:
+car
+
+domain expert:
+car
+
+TP = 1
+FP = 0
+FN = 0
+Precision = 1.0
+Recall = 1.0
+F2 = 1.0
+
+gpt-4o output:
+truck,
+van,
+car
+
+
+TP = 1
+FP = 2
+FN = 0
+Precision = 0.3333
+Recall = 1.0
+F2 = 0.7143
+
+
+o1 output:
+None
+
+
+TP = 0
+FP = 0
+FN = 1
+Precision = 0.0 (undefined)
+Recall = 0.0
+F2 = 0.0

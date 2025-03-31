@@ -1,0 +1,61 @@
+Missing features:
+
+Ground truth:
+Tire Type,
+Vehicle Weight,
+Driver behavior,
+Maintenance condition,
+Horsepower, Aerodynamics (Drag Coefficient),
+Vehicle age,
+Road type.
+
+domain expert:
+Tire Type,
+Vehicle Weight,
+Driver behavior,
+Maintenance condition,
+Horsepower, Aerodynamics (Drag Coefficient),
+Road type.
+
+metrics:
+TP = 6
+FP = 0
+FN = 1
+Precision = 1.0
+Recall = 0.86
+F2 = 0.89
+
+gpt-4o output:
+Engine technology (e.g., Turbocharged),
+Driver behavior (e.g., aggressive vs. conservative driving)"
+Vehicle age,
+Altitude & climate conditions during testing,
+Aerodynamics (drag coefficient),
+Vehicle weight,
+Maintenance condition of the vehicle (e.g., well-maintained vs. poorly maintained),
+Fuel octane rating,
+Road type (e.g., highway vs. city roads),
+Tire type & size.
+
+metrics:
+TP = 7
+FP = 3
+FN = 1
+Precision = 0.7
+Recall = 0.875
+F2 = 0.83333
+
+o1 output:
+Drive type (FWD, RWD, AWD),
+Engine power (horsepower) or torque,
+Vehicle weight (curb weight),
+Forced induction status (e.g. turbocharged),
+Model year.
+
+metrics:
+TP = 2
+FP = 5
+FN = 3
+Precision = 0.285
+Recall = 0.4
+F2 = 0.37

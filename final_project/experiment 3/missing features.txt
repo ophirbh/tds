@@ -1,0 +1,55 @@
+Missing features:
+
+Ground truth:
+Delivery_person_experience,
+Traffic_conditions,
+Time of order,
+Restaurant_order_preparation_time,
+Number_of_items_in_the_order
+
+domain expert:
+Delivery_person_experience,
+Traffic_conditions,
+Time of order.
+
+metrics:
+TP = 3
+FP = 0
+FN = 2
+Precision = 1.0
+Recall = 0.60
+F2 = 0.65
+
+
+gpt-4o output:
+Delivery_person_experience,
+Traffic_conditions_details,
+Time_of_day_of_order,
+Peak_hours_indicator
+
+
+metrics:
+TP = 4
+FP = 0
+FN = 1
+Precision = 1.0
+Recall = 0.8
+F2 = 0.8333
+
+
+o1 output:
+Restaurant_order_preparation_time,
+Day_of_the_week_or_is_weekend,
+Number_of_items_in_the_order,
+Delivery_person_experience_in_years,
+Time_of_day_or_exact_delivery_request_time
+
+
+metrics:
+TP = 5
+FP = 0
+FN = 0
+Precision = 1.0
+Recall = 1.0
+F2 = 1.0
+

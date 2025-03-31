@@ -1,0 +1,56 @@
+Missing features:
+
+Ground Truth:
+Girdle thickness,
+Certification or grading lab,
+Natural or lab-grown,
+Depth percentage and/or table percentage,
+Treatments or enhancements,
+Culet description.
+
+Domain Expert:
+Girdle thickness,
+Certification or grading lab,
+Depth percentage and/or table percentage,
+Culet description.
+
+metrics:
+TP = 4
+FP = 0
+FN = 2
+Precision = 1.0
+Recall = 0.67
+F2 = 0.717
+
+gpt-4o output:
+Brand or seller specialty,
+Age of the diamond,
+Certification or grading lab,
+Natural or lab-grown,
+Discounts or special offers,
+Market demand indicators.
+
+metrics:
+TP = 2
+FP = 4
+FN = 4
+Precision = 0.33
+Recall = 0.33
+F2 = 0.33
+
+o1 output:
+Brand or seller specialty,
+Girdle thickness,
+Certification or grading lab,
+Natural or lab-grown,
+Depth percentage and/or table percentage,
+Treatments or enhancements,
+Culet description.
+
+metrics:
+TP = 6
+FP = 1
+FN = 0
+Precision = 0.86
+Recall = 1.0
+F2 = 0.969

@@ -1,0 +1,243 @@
+missing categorical values:
+
+Shape:
+GT:
+ASSCHER,
+RADIANT.
+
+Domain expert:
+
+TP = 0
+FP = 0
+FN = 2
+Precision = 1.0
+Recall = 0.0
+F2 = 0.0
+
+gpt-4o output:
+ASSCHER,
+RADIANT.
+
+TP = 2
+FP = 0
+FN = 0
+Precision = 1.0
+Recall = 1.0
+F2 = 1.0
+
+o1 output:
+ASSCHER,
+RADIANT.
+
+TP = 2
+FP = 0
+FN = 0
+Precision = 1.0
+Recall = 1.0
+F2 = 1.0
+
+
+Clarity:
+GT:
+[]
+
+Domain expert:
+[]
+
+TP = 0
+FP = 0
+FN = 0
+Precision = 1.0
+Recall = 1.0
+F2 = 1.0
+
+gpt-4o output:
+[]
+
+TP = 0
+FP = 0
+FN = 0
+Precision = 1.0
+Recall = 1.0
+F2 = 1.0
+
+o1 output:
+[]
+
+TP = 1.0
+FP = 1.0
+FN = 1.0
+Precision = 1.0
+Recall = 1.0
+F2 = 1.0
+
+
+Colour:
+GT:
+[]
+
+Domain expert:
+[]
+
+TP = 0
+FP = 0
+FN = 0
+Precision = 1.0
+Recall = 1.0
+F2 = 1.0
+
+gpt-4o output:
+[]
+
+TP = 0
+FP = 0
+FN = 0
+Precision = 1.0
+Recall = 1.0
+F2 = 1.0
+
+o1 output:
+[]
+
+TP = 0
+FP = 0
+FN = 0
+Precision = 1.0
+Recall = 1.0
+F2 = 1.0
+
+Cut:
+GT:
+P
+
+Domain expert:
+P
+
+TP = 1
+FP = 0
+FN = 0
+Precision = 1.0
+Recall = 1.0
+F2 = 1.0
+
+gpt-4o output:
+[]
+
+TP = 0
+FP = 0
+FN = 1
+Precision = 1.0
+Recall = 0.0
+F2 = 0.0
+
+o1 output:
+P
+
+TP = 1
+FP = 0
+FN = 0
+Precision = 1.0
+Recall = 1.0
+F2 = 1.0
+
+Polish:
+GT:
+P
+
+Domain expert:
+P
+
+TP = 1
+FP = 0
+FN = 0
+Precision = 1.0
+Recall = 1.0
+F2 = 1.0
+
+gpt-4o output:
+[]
+
+TP = 0
+FP = 0
+FN = 1
+Precision = 1.0
+Recall = 0.0
+F2 = 0.0
+
+o1 output:
+P
+
+TP = 1
+FP = 0
+FN = 0
+Precision = 1.0
+Recall = 1.0
+F2 = 1.0
+
+Symmetry:
+GT:
+P
+
+Domain expert:
+P
+
+TP = 1
+FP = 0
+FN = 0
+Precision = 1.0
+Recall = 1.0
+F2 = 1.0
+
+gpt-4o output:
+ID
+
+TP = 0
+FP = 1
+FN = 1
+Precision = 0.0
+Recall = 0.0
+F2 = 0.0
+
+o1 output:
+P
+
+TP = 1
+FP = 0
+FN = 0
+Precision = 1.0
+Recall = 1.0
+F2 = 1.0
+
+Fluorescence:
+GT:
+[]
+
+Domain expert:
+[]
+
+TP = 0
+FP = 0
+FN = 0
+Precision = 1.0
+Recall = 1.0
+F2 = 1.0
+
+gpt-4o output:
+[]
+
+TP = 0
+FP = 0
+FN = 0
+Precision = 1.0
+Recall = 1.0
+F2 = 1.0
+
+o1 output:
+[]
+
+TP = 0
+FP = 0
+FN = 0
+Precision = 1.0
+Recall = 1.0
+F2 = 1.0

@@ -1,0 +1,82 @@
+Numerical validation values perturbed:
+
+
+gpt-4o output:
+
+Perturbation: Exaggerate age
+
+Feature 'Delivery_person_Age': Values make sense: False
+Reasoning: The descriptive statistics for the 'Delivery_person_Age' feature include some values that clearly do not make sense in the context of predicting delivery times in minutes. Specifically, the maximum value is 1950.0, which is not a plausible age for a delivery person or any human being. The mean age at 186.31 also indicates that there are likely outliers or data entry errors in the dataset, as human ages typically fall within a much narrower and lower range. The standard deviation and variance are exceedingly large, further suggesting that there are values in the dataset that do not realistically represent ages. The skewness and kurtosis values indicate a heavily skewed distribution with potential outliers. Therefore, these values do not make sense for the feature 'Delivery_person_Age' within this regression problem, indicating data entry errors or inadequacies that need to be addressed for proper analysis.
+
+Perturbation: Out of scale range
+
+Feature 'Delivery_person_Ratings': Values make sense: False
+Reasoning: The feature 'Delivery_person_Ratings' is expected to represent ratings given to delivery persons, presumably on a scale. Such ratings typically range from 0 to 5, 1 to 5, or 1 to 10. However, the descriptive statistics indicate a minimum value of -1.0, which is not logical for a rating scale as ratings cannot be negative. Moreover, a maximum value of 10.0 is plausible if the scale is out of 10, but the presence of a negative minimum suggests data entry errors or inconsistencies. Ratings are usually subjective yet non-negative, making a negative value inappropriate for this context. Hence, these values do not make sense for the problem of predicting delivery time based on delivery person ratings.
+
+Perturbation: Extreme temperatures
+
+Feature 'temperature': Values make sense: False
+Reasoning: The temperature values as described do not make sense in the context of predicting delivery time for several reasons:
+
+1. **Min and Max Values**: The temperature range from -100.0 to 100.0 is very unusual for any realistic day-to-day environment. Most places on Earth do not experience such extremes in a normal context, especially if we are talking about ambient temperature. These values suggest either a data error or that the temperature might not be referring to common atmospheric conditions.
+
+2. **Standard Deviation and Variance**: The standard deviation (45.19) is exceptionally high for temperature, indicating very scattered data, which would not be typical for a controlled or predictable environment.
+
+3. **Interpretation of Skewness and Kurtosis**: The skewness is moderately negative, which means the data is skewed towards lower temperatures, but combined with the high kurtosis and the extreme min value, this suggests data anomalies rather than any realistic distribution.
+
+4. **Contextual Relevance**: For predicting delivery time, realistic temperature ranges need to be considered. A minimum temperature of -100.0 degrees is beyond even the norms for industrial freezers and does not provide applicable regression context without further understanding what "temperature" measures.
+
+In conclusion, unless there is a specific interpretation of "temperature" that justifies these values (e.g., a simulation or a scientific setting), they do not make sense in a typical real-world use case of delivery prediction.
+
+Perturbation: Impossible humidity levels
+
+Feature 'humidity': Values make sense: False
+Reasoning: Humidity is typically measured as a percentage that ranges from 0% to 100%, where 0% represents completely dry air and 100% represents air that is fully saturated with water vapor. In the given dataset, the minimum value for humidity is -10.0, which is not physically possible, as humidity cannot be negative. Additionally, the maximum value is 200.0, which also does not make sense as it exceeds the logical maximum of 100%. These values indicate errors or anomalies in the dataset that should be investigated and corrected. The descriptive statistics like mean, median, and standard deviation are also skewed due to these extreme values, which can lead to incorrect analysis. Therefore, the numerical values for the humidity feature do not make sense in the given context.
+
+Perturbation: Negative or extreme precipitation
+
+Feature 'precipitation': Values make sense: False
+Reasoning: The precipitation feature has a minimum value of -5.0, which is nonsensical in the context of real-world data because precipitation (usually measured in millimeters or inches) cannot be negative. This indicates possibly erroneous data entries or miscalculations. Additionally, the maximum value of 500 is excessively high for typical precipitation measurements, suggesting it might be an outlier or represent data collected over an uncommon timeframe or misunderstood scale. 
+
+The median and interquartile range (both 0.0) suggest that the majority of the data points have zero precipitation, which might make sense in certain regions or climates, but it also implies that the non-zero values are rare or distributed unevenly. The high skewness and kurtosis further indicate that the distribution of precipitation values is heavily right-skewed with potential outliers.
+
+Overall, while some aspects of the descriptive statistics, like the skewness and precipitation often being zero, can make sense contextually, the presence of negative values and a very high maximum suggest issues with data accuracy or reliability.
+
+Perturbation: Negative or excessive distance
+
+Feature 'Distance (km)': Values make sense: False
+Reasoning: The numerical feature 'Distance (km)' includes a minimum value of -50.0, which does not make sense in the context of predicting delivery times. Distance should logically be a non-negative value, as it represents the space between two points. Negative distances are nonsensical in real-world scenarios, especially within the context of delivery, where distances are traveled physically. Furthermore, while the maximum value of 10000.0 km could technically be possible for long-range deliveries, the enormous range and standard deviation suggest that there might be outliers or errors in the data collection process. Additionally, the very low skewness and moderately high kurtosis could indicate abnormal data distribution. In summary, the negative value of distance is a critical flaw in the dataset that should be addressed for meaningful model predictions.
+
+
+o1-output:
+
+Perturbation: Exaggerate age
+
+Feature 'Delivery_person_Age': Values make sense: False
+Reasoning: The feature is supposed to represent a delivery person’s age in years, yet the maximum is 1950, which is not a feasible human age. Although the median of 32 appears reasonable, the extreme maximum (and consequently large mean and standard deviation) suggests that the dataset values for this feature are not entirely correct for real-world ages.
+
+Perturbation: Out of scale range
+
+Feature 'Delivery_person_Ratings': Values make sense: False
+Reasoning: It is unusual for a delivery person rating to be negative, especially if a known rating scale goes from 1 to 5 or even 1 to 10. Although the mean, median, and maximum values might fit within a plausible rating range, the minimum value of -1.0 is suspicious. Unless there is a specific system that allows negative ratings, it does not appear consistent with a typical delivery person rating scale, so these values do not fully make sense in this context.
+
+Perturbation: Extreme temperatures
+
+Feature 'temperature': Values make sense: False
+Reasoning: Although most of the temperature values cluster around the 20–26°C range, having extremes of −100°C and 100°C is highly unusual for typical delivery contexts and strongly suggests data errors or outliers. In a real-world scenario, it is improbable for ambient or shipping temperatures to swing that drastically. Therefore, these values do not make sense given the usual conditions for a local delivery time prediction problem, and they likely indicate incorrect or flawed data.
+
+Perturbation: Impossible humidity levels
+
+Feature 'humidity': Values make sense: False
+Reasoning: Typical relative humidity ranges between 0 and 100 percent, and negative or above-100 values are physically implausible. The minimum value of -10 and maximum value of 200 suggest measurement or data entry errors, making the humidity values suspect for predicting delivery time.
+
+Perturbation: Negative or extreme precipitation
+
+Feature 'precipitation': Values make sense: False
+Reasoning: The minimum value of -5.0 for precipitation does not make sense physically, as precipitation cannot be negative. While the high maximum might be a legitimate extreme, the presence of negative values indicates a data quality or measurement issue for a feature like precipitation, which should be zero or positive in real-world conditions.
+
+Perturbation: Negative or excessive distance
+
+Feature 'Distance (km)': Values make sense: False
+Reasoning: Distance (km) should not be negative in a real-world delivery context, yet the data has a minimum of -50.0. This suggests erroneous or incorrectly coded values. Additionally, the extremely large maximum value (10,000 km) is unusual for typical deliveries, though not inherently impossible. However, the negative values alone indicate the distance values are not valid as-is for modeling delivery time.
+

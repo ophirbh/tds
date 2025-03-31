@@ -1,0 +1,126 @@
+missing categorical values:
+
+Occupation:
+GT:
+Student,
+Athlete,
+Retired,
+Unemployed,
+Freelancer.
+
+Domain expert:
+Student,
+Athlete,
+Retired,
+Unemployed.
+
+TP = 4
+FP = 0
+FN = 1
+Precision = 1.0
+Recall = 0.8
+F2 = 0.83
+
+gpt-4o output:
+Shift Worker,
+Consultant,
+Athlete,
+Business Owner,
+Retired,
+Student,
+Artist,
+Unemployed,
+Freelancer.
+
+TP = 5
+FP = 4
+FN = 0
+Precision = 0.556
+Recall = 1.0
+F2 = 0.86
+
+o1 output:
+Unemployed,
+Stay-at-home parent,
+Retired,
+Student,
+Shift worker.
+            
+TP = 3
+FP = 2
+FN = 2
+Precision = 0.6
+Recall = 0.6
+F2 = 0.6
+
+
+BMI Category:
+GT: 
+Underweight.
+
+Domain expert:
+Underweight.
+
+TP = 1
+FP = 0
+FN = 0
+Precision = 1.0
+Recall = 1.0
+F2 = 1.0
+
+gpt-4o output:
+Underweight.
+
+TP = 1
+FP = 0
+FN = 0
+Precision = 1.0
+Recall = 1.0
+F2 = 1.0
+
+o1 output:
+Underweight.
+
+TP = 1.0
+FP = 1.0
+FN = 1.0
+Precision = 1.0
+Recall = 1.0
+F2 = 1.0
+
+
+Sleep Disorder:
+GT:
+Restless Leg Syndrome,
+Narcolepsy.
+
+Domain expert:
+Narcolepsy.
+
+TP = 1
+FP = 0
+FN = 1
+Precision = 1.0
+Recall = 0.50
+F2 = 0.56
+
+gpt-4o output:
+None
+
+TP = 0
+FP = 0
+FN = 2
+Precision = 0 (undefined)
+Recall = 0
+F2 = 0
+
+o1 output:
+Restless Leg Syndrome,
+Narcolepsy.
+            
+TP = 2
+FP = 0
+FN = 0
+Precision = 1.0
+Recall = 1.0
+F2 = 1.0

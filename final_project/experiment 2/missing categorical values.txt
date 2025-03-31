@@ -1,0 +1,113 @@
+Missing categorical values:
+
+Vehicle Class: 
+GT:
+Sport car,
+luxury car.
+
+domain expert:
+Sport car.
+
+TP = 1
+FP = 0
+FN = 1
+Precision = 1.0
+Recall = 0.50
+F2 = 0.56
+
+gpt-4o output:
+LUXURY VEHICLE,
+SPORTS CAR,
+MICROCAR
+
+TP = 2
+FP = 1
+FN = 0
+Precision = 0.66
+Recall = 1.0
+F2 = 0.901
+
+
+o1 output:
+None
+
+TP = 0
+FP = 0
+FN = 2
+Precision = 0 (undefined)
+Recall = 0
+F2 = 0
+
+Transmission:
+GT: 
+Electronic Variable Transmission (EVT),
+Dual-Clutch Transmission (DCT)
+
+domain expert:
+Electronic Variable Transmission (EVT),
+Dual-Clutch Transmission (DCT)
+
+TP = 2
+FP = 0
+FN = 0
+Precision = 1.0
+Recall = 1.0
+F2 = 1.0
+
+gpt-4o output:
+DCT,
+IVT.
+
+TP = 1
+FP = 1
+FN = 1
+Precision = 0.5
+Recall = 0.5
+F2 = 0.5
+
+
+o1 output:
+None
+
+TP = 0
+FP = 0
+FN = 0
+Precision = 0 (undefined)
+Recall = 0
+F2 = 0
+
+Fuel Type:
+GT:
+Hybrid
+
+domain expert:
+Hybrid
+
+TP = 1
+FP = 0
+FN = 0
+Precision = 1.0
+Recall = 1.0
+F2 = 1.0
+
+gpt-4o output:
+Hybrid,
+CNG.
+
+TP = 1
+FP = 1
+FN = 0
+Precision = 0.5
+Recall = 1.0
+F2 = 0.833
+
+
+o1 output:
+None
+
+TP = 0
+FP = 0
+FN = 1
+Precision = 0 (undefined)
+Recall = 0
+F2 = 0
